@@ -1,7 +1,7 @@
 {
   "name": "learn-reasonml-workshop",
   "version": "0.1.0",
-  "sources": { "dir": "src/exercises",       "subdirs": true  },
+  "sources": [{"dir": "src/exercises",       "subdirs": true  }, "src/support"],
   "package-specs": {
     "module": "commonjs",
     "in-source": true

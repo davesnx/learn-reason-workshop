@@ -32,11 +32,11 @@ let floatFour = 4.;
   value of the last statement in that function.
  */
 /* let intAverage = (x, y) => failwith("For you to implement"); */
-let intAverage = (x, y) => failwith("For you to implement");
+let intAverage = (x, y) => x + y / 2;
 
 /* let floatAverage : (float, float) => float */
 /* let floatAverage = (x, y) => failwith("For you to implement"); */
-let floatAverage = (x, y) => failwith("For you to implement");
+let floatAverage = (x, y) => x + y /. 2.;
 
 /*
   The following expression computes the average of 10 and 20:

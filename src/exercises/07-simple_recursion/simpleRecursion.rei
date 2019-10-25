@@ -1,1 +1,0 @@
-let factorial: int => int;

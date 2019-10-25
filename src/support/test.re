@@ -26,7 +26,7 @@ let runAll = xs => {
   let count = List.length(xs);
   let tests = List.map(create, xs);
   let failures =
-    tests |> List.map(test) |> List.filter(y => ! y) |> List.length;
+    tests |> List.map(test) |> List.filter(y => !y) |> List.length;
 
   let descriptions = List.map(toString, tests);
   Js.log("");

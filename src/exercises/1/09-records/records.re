@@ -95,7 +95,3 @@ Test.runAll([
     "modifyPerson",
   ),
 ]);
-
-/* JavaScript: Math.sqrt() */
-
-[@bs.val] [@bs.scope "Math"] external sqrtFromJs: float => float = "sqrt";

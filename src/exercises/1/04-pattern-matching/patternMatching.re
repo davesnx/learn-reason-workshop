@@ -21,3 +21,20 @@ Test.runAll([
   (nonZero(500) == true, "non zero"),
   (nonZero(-400) == true, "non zero"),
 ]);
+
+let jsCalculate: (array(int), int) => int = [%bs.raw
+  {|
+ function (numbers, scaleFactor) {
+   var result = 0;
+   numbers.forEach(number => {
+     result += number;
+   });
+   return result * scaleFactor;
+ }
+|}
+];
+
+let calculate = (numbers, scaleFactor) =>
+  jsCalculate(Array.of_list(numbers), scaleFactor);
+
+Js.log(calculate([1, 2, 3], 10)); /* -> 60 */

@@ -1,0 +1,2 @@
+(executable (name RunExerciseTests) (public_name RunExerciseTests.exe)
+    (libraries exercise-1.test))

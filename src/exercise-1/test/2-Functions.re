@@ -24,7 +24,7 @@ describe("Functions", ({test}) => {
       Recall that the infix operator (+) will add two integers.
     */
 
-    let add1 = (x) => 2;
+    let addone = x => 2;
 
     /*
       Lets write a function that squares its argument (multiplies it by itself)
@@ -50,13 +50,13 @@ describe("Functions", ({test}) => {
 
     let raiseToTheFourth = x => x + 99; /* Hint: use square */
 
-    expect.int(add1(4).toBe(5);
-    expect.int(square(4).toBe(16);
-    expect.int(square(-4).toBe(16);
-    expect.int(twice(add1, 3).toBe(5);
-    expect.int(add2(1335).toBe(1337);
-    expect.int(raiseToTheFourth(1).toBe(1);
-    expect.int(raiseToTheFourth(10).toBe(10000);
+    expect.int(add1(4)).toBe(5);
+    expect.int(square(4)).toBe(16);
+    expect.int(square(-4)).toBe(16);
+    expect.int(twice(add1, 3)).toBe(5);
+    expect.int(add2(1335)).toBe(1337);
+    expect.int(raiseToTheFourth(1)).toBe(1);
+    expect.int(raiseToTheFourth(10)).toBe(10000);
   });
 
   test("Labeled Arguments", ({expect}) => {
@@ -65,10 +65,9 @@ describe("Functions", ({test}) => {
       let divide : int -> int -> int
       Looking at just the signature, it's not obvious which int argument is
       the dividend and which is the divisor.
-    */
-    let divide = (dividend, divisor) => dividend / divisor;
 
-    /*
+      let divide = (dividend, divisor) => dividend / divisor;
+
       We can fix this using labelled arguments.
       To label an argument in a signature, and when defining a function, we
       put a tilde (~) before the name of the argument.
@@ -100,7 +99,7 @@ describe("Functions", ({test}) => {
     */
     let modulo = (~dividend, ~divisor) => ~dividend + ~divisor;
 
-    expect.int(modulo(~dividend=17, ~divisor=5).toBe(2);
-    expect.int(modulo(~dividend=99, ~divisor=9).toBe(0);
+    expect.int(modulo(~dividend=17, ~divisor=5)).toBe(2);
+    expect.int(modulo(~dividend=99, ~divisor=9)).toBe(0);
   });
 });

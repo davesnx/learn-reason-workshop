@@ -1,5 +1,31 @@
 open Setup;
 
+/*
+  As in most languages, you can define your own types.
+  The keyword "type" introduces a type definition.
+
+  One of the non-basic types in Reason is called the variant type.
+  Variant types are similar to Enums in other languages. They are
+  types which may take on multiple forms, where each form is marked
+  by an explicit tag. A variant type is defined as follows:
+*/
+
+type color =
+  | Red
+  | Green
+  | Blue;
+
+/*
+  Reason variants are in many ways more powerful than Enums because the different
+  constructors of your variant can include data in them. Here's an example:
+*/
+type cardValue =
+  | Ace
+  | King
+  | Queen
+  | Jack
+  | Number(int);
+
 describe("PatternMatching", ({test}) => {
   test("Basic", ({expect}) => {
     /*
@@ -19,28 +45,14 @@ describe("PatternMatching", ({test}) => {
       Lets use our own pattern matching. Write a function that returns
       whether x is non zero by matching on x
     */
-    let nonZero = x => failwith("For you to implement");
+    let nonZero = x => false;
 
-    expect.bool(nonZero(0).toBeFalse();
-    expect.bool(nonZero(500).toBeTrue();
-    expect.bool(nonZero(-400).toBeTrue();
+    expect.bool(nonZero(0)).toBeFalse();
+    expect.bool(nonZero(500)).toBeTrue();
+    expect.bool(nonZero(-400)).toBeTrue();
   });
 
   test("Variants", ({expect}) => {
-    /*
-      As in most languages, you can define your own types.
-      The keyword "type" introduces a type definition.
-
-      One of the non-basic types in Reason is called the variant type.
-      Variant types are similar to Enums in other languages. They are
-      types which may take on multiple forms, where each form is marked
-      by an explicit tag. A variant type is defined as follows:
-    */
-    type color =
-      | Red
-      | Green
-      | Blue;
-
     /* Variants are very useful in combination with pattern matching */
     let toString = color =>
       switch (color) {
@@ -48,17 +60,6 @@ describe("PatternMatching", ({test}) => {
       | Green => "green"
       | Blue => "blue"
       };
-
-    /*
-      Reason variants are in many ways more powerful than Enums because the different
-      constructors of your variant can include data in them. Here's an example:
-    */
-    type cardValue =
-      | Ace
-      | King
-      | Queen
-      | Jack
-      | Number(int);
 
     let oneCardValue: cardValue = Queen;
 
@@ -79,13 +80,13 @@ describe("PatternMatching", ({test}) => {
     */
     let cardValueToScore = cardValue => 3;
 
-  expect.int(cardValueToScore(Ace).toBe(11);
-  expect.int(cardValueToScore(King).toBe(10);
-  expect.int(cardValueToScore(Queen).toBe(10);
-  expect.int(cardValueToScore(Jack).toBe(10);
-  expect.int(cardValueToScore(Number(5)).toBe(5);
+    expect.int(cardValueToScore(Ace)).toBe(11);
+    expect.int(cardValueToScore(King)).toBe(10);
+    expect.int(cardValueToScore(Queen)).toBe(10);
+    expect.int(cardValueToScore(Jack)).toBe(10);
+    expect.int(cardValueToScore(Number(5)).toBe(5);
   })
 
-  // Explain equality of records/lists
-  // Explain pattern matching with records/lists
+  /* // Explain equality of records/lists */
+  /* // Explain pattern matching with records/lists */
 });

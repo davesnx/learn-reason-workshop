@@ -1,14 +1,14 @@
 open Setup;
 
 /*
-  As in most languages, you can define your own types.
-  The keyword "type" introduces a type definition.
+   As in most languages, you can define your own types.
+   The keyword "type" introduces a type definition.
 
-  One of the non-basic types in Reason is called the variant type.
-  Variant types are similar to Enums in other languages. They are
-  types which may take on multiple forms, where each form is marked
-  by an explicit tag. A variant type is defined as follows:
-*/
+   One of the non-basic types in Reason is called the variant type.
+   Variant types are similar to Enums in other languages. They are
+   types which may take on multiple forms, where each form is marked
+   by an explicit tag. A variant type is defined as follows:
+ */
 
 type color =
   | Red
@@ -16,9 +16,9 @@ type color =
   | Blue;
 
 /*
-  Reason variants are in many ways more powerful than Enums because the different
-  constructors of your variant can include data in them. Here's an example:
-*/
+   Reason variants are in many ways more powerful than Enums because the different
+   constructors of your variant can include data in them. Here's an example:
+ */
 type cardValue =
   | Ace
   | King
@@ -27,66 +27,68 @@ type cardValue =
   | Number(int);
 
 describe("PatternMatching", ({test}) => {
-  test("Basic", ({expect}) => {
+  test("Basic", ({expect})
+    => {
+      /*
+         Pattern matching lets us compare inputs to known values.
+         Patterns following "|" are tested in order.
+         On the first match, we use the result following "=>".
+         The "_" pattern means "could be anything".
+       */
+
+      let isSuperman = x =>
+        switch (x) {
+        | "Clark Kent" => true
+        | _ => false
+        };
+
+      /*
+         Lets use our own pattern matching. Write a function that returns
+         whether x is non zero by matching on x
+       */
+      let nonZero = x => false;
+
+      expect.bool(nonZero(0)).toBeFalse();
+      expect.bool(nonZero(500)).toBeTrue();
+      expect.bool(nonZero(-400)).toBeTrue();
+    })
     /*
-      Pattern matching lets us compare inputs to known values.
-      Patterns following "|" are tested in order.
-      On the first match, we use the result following "=>".
-      The "_" pattern means "could be anything".
-    */
+       test("Variants", ({expect}) => {
+       /* Variants are very useful in combination with pattern matching */
+       let toString = color =>
+         switch (color) {
+         | Red => "red"
+         | Green => "green"
+         | Blue => "blue"
+         };
 
-    let isSuperman = x =>
-      switch (x) {
-      | "Clark Kent" => true
-      | _ => false
-    };
+       let oneCardValue: cardValue = Queen;
 
-    /*
-      Lets use our own pattern matching. Write a function that returns
-      whether x is non zero by matching on x
-    */
-    let nonZero = x => false;
+       let anotherCardValue: cardValue = Number(8);
 
-    expect.bool(nonZero(0)).toBeFalse();
-    expect.bool(nonZero(500)).toBeTrue();
-    expect.bool(nonZero(-400)).toBeTrue();
-  });
+       let cardValueToString = cardValue =>
+         switch (cardValue) {
+         | Ace => "Ace"
+         | King => "King"
+         | Queen => "Queen"
+         | Jack => "Jack"
+         | Number(i) => string_of_int(i)
+         };
 
-  test("Variants", ({expect}) => {
-    /* Variants are very useful in combination with pattern matching */
-    let toString = color =>
-      switch (color) {
-      | Red => "red"
-      | Green => "green"
-      | Blue => "blue"
-      };
+       /*
+         Write a function that computes the score of a card (aces should score 11
+         and face cards should score 10).
+       */
+       let cardValueToScore = cardValue => 3;
 
-    let oneCardValue: cardValue = Queen;
+       expect.int(cardValueToScore(Ace)).toBe(11);
+       expect.int(cardValueToScore(King)).toBe(10);
+       expect.int(cardValueToScore(Queen)).toBe(10);
+       expect.int(cardValueToScore(Jack)).toBe(10);
+       expect.int(cardValueToScore(Number(5)).toBe(5);
+     })
 
-    let anotherCardValue: cardValue = Number(8);
-
-    let cardValueToString = cardValue =>
-      switch (cardValue) {
-      | Ace => "Ace"
-      | King => "King"
-      | Queen => "Queen"
-      | Jack => "Jack"
-      | Number(i) => string_of_int(i)
-      };
-
-    /*
-      Write a function that computes the score of a card (aces should score 11
-      and face cards should score 10).
-    */
-    let cardValueToScore = cardValue => 3;
-
-    expect.int(cardValueToScore(Ace)).toBe(11);
-    expect.int(cardValueToScore(King)).toBe(10);
-    expect.int(cardValueToScore(Queen)).toBe(10);
-    expect.int(cardValueToScore(Jack)).toBe(10);
-    expect.int(cardValueToScore(Number(5)).toBe(5);
-  })
-
-  /* // Explain equality of records/lists */
-  /* // Explain pattern matching with records/lists */
+     /* // Explain equality of records/lists */
+     /* // Explain pattern matching with records/lists */
+     */
 });
